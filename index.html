@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kit Habilidades Motoras 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #222;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      background: #111;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .urgency-bar span { color: #FF7A00; font-weight: 800; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 44px 24px 40px;
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .hero h1 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #FF7A00;
+    }
+
+    .hero__sub {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 14px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero__img {
+      display: block;
+      width: 75%;
+      max-width: 300px;
+      margin: 0 auto 10px;
+    }
+
+    /* ── VIDEO BOX ── */
+    .video-wrap {
+      max-width: 420px;
+      margin: 0 auto 32px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+
+    .video-placeholder__play {
+      width: 64px;
+      height: 64px;
+      background: #FF7A00;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .video-placeholder p {
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      background: #FF7A00;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(255,122,0,0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,122,0,0.45); }
+    .btn:active { transform: translateY(0); }
+
+    /* ── SECTION GENERIC ── */
+    .section { padding: 52px 24px; }
+    .section--gray { background: #fafafa; }
+    .section--orange-light { background: #fff7f0; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF7A00;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 8px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.65;
+      max-width: 420px;
+      margin: 0 auto 32px;
+    }
+
+    /* ── LEARN CARDS ── */
+    .learn-card {
+      background: #fff;
+      border: 1.5px solid #f0f0f0;
+      border-radius: 20px;
+      padding: 28px 20px;
+      max-width: 400px;
+      margin: 0 auto 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .learn-card__icon { font-size: 3rem; margin-bottom: 12px; }
+
+    .learn-card__title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #FF7A00;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .learn-card__text {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    /* ── PHOTO / SOCIAL PROOF ── */
+    .proof-section { padding: 52px 24px; background: #fff; }
+
+    .proof-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 480px;
+      margin: 24px auto 32px;
+    }
+
+    .proof-gallery img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+      object-fit: cover;
+      display: block;
+    }
+
+    .proof-gallery img:first-child { aspect-ratio: 4/3; }
+    .proof-gallery img:nth-child(2) { aspect-ratio: 4/3; }
+    .proof-gallery img:last-child { aspect-ratio: 16/9; }
+
+    /* ── HOW IT WORKS ── */
+    .steps-list {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-item__icon-wrap {
+      width: 72px;
+      height: 72px;
+      background: #fff7f0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 2px solid #ffe0bf;
+    }
+
+    .step-item__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FF7A00;
+    }
+
+    .step-item__text {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    /* ── PRICE BOX ── */
+    .price-section { padding: 52px 20px; background: #fff; }
+
+    .price-section__subtitle {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 32px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .price-box {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 24px;
+      padding: 32px 24px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      position: relative;
+      text-align: center;
+    }
+
+    /* badge "MAIS VENDIDO" / "PREMIUM" */
+    .price-box__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .price-box--orange { border-color: #FF7A00; box-shadow: 0 6px 28px rgba(255,122,0,0.18); }
+    .price-box--orange .price-box__badge { background: #FF7A00; color: #fff; }
+    .price-box--orange .price-box__logo { color: #FF7A00; }
+    .price-box--orange .price-box__current { color: #FF7A00; }
+    .price-box--orange .check { background: #FF7A00; }
+    .price-box--orange .btn { background: #FF7A00; box-shadow: 0 6px 20px rgba(255,122,0,0.35); }
+
+    .price-box--green { border-color: #16a34a; box-shadow: 0 6px 28px rgba(22,163,74,0.18); }
+    .price-box--green .price-box__badge { background: #16a34a; color: #fff; }
+    .price-box--green .price-box__logo { color: #16a34a; }
+    .price-box--green .price-box__current { color: #16a34a; }
+    .price-box--green .check { background: #16a34a; }
+    .price-box--green .btn { background: #16a34a; box-shadow: 0 6px 20px rgba(22,163,74,0.35); }
+    .price-box--green .btn:hover { box-shadow: 0 10px 28px rgba(22,163,74,0.45); }
+
+    .price-box__logo {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      line-height: 1.15;
+    }
+
+    .price-box__name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .price-box__old {
+      font-size: 0.95rem;
+      color: #bbb;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .price-box__label {
+      font-size: 0.78rem;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .price-box__current {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .price-box__current sup {
+      font-size: 1.2rem;
+      vertical-align: super;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .price-features li .check {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      margin-top: 1px;
+    }
+
+    .price-features li .check--muted {
+      background: #ddd !important;
+      color: #aaa;
+    }
+
+    .whatsapp-note {
+      margin-top: 14px;
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      color: #166534;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .price-box__total-tag {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    /* ── GUARANTEE ── */
+    .guarantee-box {
+      border: 2px dashed #FF7A00;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .guarantee-box__icon { font-size: 3rem; margin-bottom: 10px; }
+    .guarantee-box__title { font-size: 1.1rem; font-weight: 800; color: #FF7A00; margin-bottom: 8px; }
+    .guarantee-box__text { font-size: 0.92rem; color: #555; line-height: 1.65; }
+
+    /* ── FAQ ── */
+    .faq { max-width: 480px; margin: 0 auto; text-align: left; }
+
+    .faq__item { border-bottom: 1px solid #eee; }
+
+    .faq__btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #222;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq__btn:hover { color: #FF7A00; }
+
+    .faq__icon {
+      font-size: 1.2rem;
+      color: #FF7A00;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq__answer {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      padding-bottom: 18px;
+      display: none;
+    }
+
+    .faq__item.open .faq__answer { display: block; }
+    .faq__item.open .faq__icon { transform: rotate(45deg); }
+
+    /* ── HELP FOOTER ── */
+    .help-section {
+      background: #fafafa;
+      padding: 40px 24px;
+      border-top: 1px solid #eee;
+    }
+
+    .help-section__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 8px;
+    }
+
+    .help-section__text {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.65;
+      max-width: 360px;
+      margin: 0 auto 16px;
+    }
+
+    .help-section__text a { color: #FF7A00; font-weight: 600; }
+
+    .disclaimer {
+      padding: 20px 24px;
+      font-size: 0.72rem;
+      color: #bbb;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── BARRA DE URGÊNCIA ── -->
+  <div class="urgency-bar">
+    🔥 Desconto só <span>HOJE</span> nessa página · <span>21/04/2026</span>
+  </div>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <h1>Atividades para <em>Habilidades Motoras</em> que toda professora precisa ter na sala de aula.</h1>
+    <p class="hero__sub">Material completo, pronto para aplicar na sua turma. Sem precisar criar nada do zero, é só imprimir e usar.</p>
+
+    <img src="https://i.ibb.co/bMMsW02L/download.webp" alt="Kit Habilidades Motoras" class="hero__img" />
+
+    <div class="video-wrap">
+      <!-- Substitua pelo seu link do YouTube: src="https://www.youtube.com/embed/SEU_ID" -->
+      <div class="video-placeholder">
+        <div class="video-placeholder__play">▶</div>
+        <p>Cole aqui o link do seu vídeo</p>
+      </div>
+    </div>
+
+    <a href="#comprar" class="btn">QUERO PARA MINHA TURMA</a>
+  </header>
+
+  <!-- ── O QUE AS CRIANÇAS VÃO DESENVOLVER ── -->
+  <section class="section section--gray">
+    <div class="section-label">O QUE SUA TURMA VAI DESENVOLVER</div>
+    <h2 class="section-title">Habilidades essenciais que suas alunos vão desenvolver</h2>
+    <p class="section-sub">Cada atividade foi pensada para facilitar o seu trabalho e engajar as crianças dentro da sala de aula.</p>
+
+    <div class="learn-card">
+      <div class="learn-card__icon">✏️</div>
+      <div class="learn-card__title">Coordenação Motora Fina</div>
+      <p class="learn-card__text">Exercícios práticos que desenvolvem o controle dos movimentos das mãos, preparando sua turma para a escrita com mais confiança e segurança.</p>
+    </div>
+
+    <div class="learn-card">
+      <div class="learn-card__icon">🎨</div>
+      <div class="learn-card__title">Criatividade e Concentração</div>
+      <p class="learn-card__text">Atividades coloridas e envolventes que estimulam a imaginação das crianças e ajudam a manter o foco durante as aulas.</p>
+    </div>
+
+    <div class="learn-card">
+      <div class="learn-card__icon">🧠</div>
+      <div class="learn-card__title">Desenvolvimento Cognitivo</div>
+      <p class="learn-card__text">Desafios que estimulam o raciocínio e a memória da turma de forma natural, você aplica, elas aprendem brincando.</p>
+    </div>
+  </section>
+
+  <!-- ── PROVA SOCIAL / FOTO ── -->
+  <section class="proof-section">
+    <div class="section-label">VEJA O MATERIAL</div>
+    <h2 class="section-title">Veja como o <em style="font-style:normal;color:#FF7A00">Kit de Atividades para Habilidades Motoras</em> transforma sua sala de aula ⭐</h2>
+
+    <div class="proof-gallery">
+      <img src="https://i.ibb.co/j9Q9S6nL/foto1.png" alt="Crianças usando o Kit de Atividades para Habilidades Motoras em sala de aula" />
+      <img src="https://i.ibb.co/MyFV108w/foto2.png" alt="Alunos realizando atividades de coordenação motora com o kit impresso" />
+      <img src="https://i.ibb.co/Y7Sx22d4/foto3.png" alt="Criança colorindo atividade do Kit de Habilidades Motoras" />
+    </div>
+
+    <a href="#comprar" class="btn">QUERO PARA MINHA TURMA</a>
+  </section>
+
+  <!-- ── COMO FUNCIONA ── -->
+  <section class="section section--orange-light">
+    <div class="section-label">COMO FUNCIONA</div>
+    <h2 class="section-title">Simples, rápido e prático</h2>
+    <p class="section-sub">Em 3 passos você já tem o <strong>Kit de Atividades para Habilidades Motoras</strong> pronto para a próxima aula.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-item__icon-wrap">📧</div>
+        <div class="step-item__title">Chega no seu e-mail</div>
+        <p class="step-item__text">Após a compra você recebe o acesso para baixar todos os materiais imediatamente.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-item__icon-wrap">🖨️</div>
+        <div class="step-item__title">Você imprime</div>
+        <p class="step-item__text">Imprima na escola ou na gráfica, quantas vezes precisar para toda a turma.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-item__icon-wrap">📚</div>
+        <div class="step-item__title">Aplica com a turma</div>
+        <p class="step-item__text">Material em mãos, é só distribuir e começar. Engajamento garantido na sala de aula.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PREÇO ── -->
+  <section class="price-section" id="comprar">
+    <div class="section-label">ESCOLHA SUA OFERTA</div>
+    <h2 class="section-title">Escolha o kit ideal<br>para a sua turma</h2>
+    <p class="price-section__subtitle">Material pronto para usar na sua turma. Acesso imediato e garantia de 7 dias.</p>
+
+    <div class="price-grid">
+
+      <!-- CARD BÁSICO -->
+      <div class="price-box price-box--orange">
+        <div class="price-box__badge">✦ Mais Vendido</div>
+        <div class="price-box__logo">KIT HABILIDADES<br>MOTORAS</div>
+        <div class="price-box__name">Oferta Básica · 2026</div>
+
+        <div class="price-box__old">De R$ 29,90</div>
+        <div class="price-box__label">Por Apenas:</div>
+        <div class="price-box__current"><sup>R$</sup>7,90</div>
+
+        <ul class="price-features">
+          <li><span class="check">✓</span> Kit Habilidades Motoras completo</li>
+          <li><span class="check">✓</span> Atividades de coordenação motora fina</li>
+          <li><span class="check">✓</span> Acesso imediato + vitalício</li>
+          <li><span class="check">✓</span> Pronto para impressão</li>
+          <li><span class="check check--muted">✗</span> <span style="color:#bbb">Dinâmicas infantis</span></li>
+          <li><span class="check check--muted">✗</span> <span style="color:#bbb">Atividades datas comemorativas</span></li>
+        </ul>
+
+        <a href="https://pay.lowify.com.br/checkout?product_id=V1jJO9" class="btn">🛒 Quero o Kit Básico</a>
+
+        <div class="whatsapp-note">
+          💬 Você recebe o PDF no seu WhatsApp após a compra.
+        </div>
+      </div>
+
+      <!-- CARD PREMIUM -->
+      <div class="price-box price-box--green">
+        <div class="price-box__badge">⭐ Premium — Melhor Custo-Benefício</div>
+        <div class="price-box__logo">KIT COMPLETO<br>PREMIUM</div>
+        <div class="price-box__name">Oferta Premium · 2026</div>
+
+        <div class="price-box__total-tag">+500 atividades incluídas</div>
+
+        <div class="price-box__old">De R$ 79,90</div>
+        <div class="price-box__label">Por Apenas:</div>
+        <div class="price-box__current"><sup>R$</sup>15,90</div>
+
+        <ul class="price-features">
+          <li><span class="check">✓</span> Kit Habilidades Motoras completo</li>
+          <li><span class="check">✓</span> +250 dinâmicas infantis</li>
+          <li><span class="check">✓</span> +50 atividades para datas comemorativas</li>
+          <li><span class="check">✓</span> +500 atividades infantis no total</li>
+          <li><span class="check">✓</span> Acesso imediato + vitalício</li>
+          <li><span class="check">✓</span> Pronto para impressão</li>
+        </ul>
+
+        <a href="https://pay.lowify.com.br/checkout?product_id=LhQBNG" class="btn">⭐ Quero o Kit Premium</a>
+
+        <div class="whatsapp-note">
+          💬 Você recebe todos os PDFs no seu WhatsApp após a compra.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── GARANTIA ── -->
+  <section class="section section--gray">
+    <h2 class="section-title">Compra 100% segura</h2>
+    <div class="guarantee-box">
+      <div class="guarantee-box__icon">🛡️</div>
+      <div class="guarantee-box__title">Garantia de 7 dias</div>
+      <p class="guarantee-box__text">Se não gostar do material, devolvemos seu dinheiro sem complicação. Você não tem nada a perder.</p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section">
+    <div class="section-label">DÚVIDAS FREQUENTES</div>
+    <h2 class="section-title">Perguntas Frequentes</h2>
+
+    <div class="faq">
+      <div class="faq__item">
+        <button class="faq__btn">Como vou receber o material? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">Após a confirmação da compra, você recebe o link de download por e-mail e WhatsApp imediatamente.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__btn">Posso imprimir para toda a turma? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">Sim! Você pode imprimir quantas cópias precisar, na escola ou na gráfica, sem custo adicional.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__btn">Funciona para qual faixa etária? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">O material é ideal para turmas de Educação Infantil e anos iniciais do Ensino Fundamental, geralmente crianças entre 3 e 8 anos.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__btn">Preciso adaptar as atividades? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">Não. Tudo já está pronto e organizado para aplicar direto em sala. Você só imprime e distribui.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__btn">Quais formas de pagamento são aceitas? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">Cartão de crédito, débito, Pix e boleto bancário.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__btn">Tem garantia? <span class="faq__icon">+</span></button>
+        <div class="faq__answer">Sim! Você tem 7 dias de garantia total. Se não gostar, devolvemos 100% do seu dinheiro.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AJUDA ── -->
+  <div class="help-section">
+    <div class="help-section__title">🧡 Precisa de Ajuda?</div>
+    <p class="help-section__text">
+      Entre em contato pelo e-mail <a href="mailto:contato@kithabilidades.com.br">contato@kithabilidades.com.br</a> e nossa equipe responderá rapidamente para ajudar com qualquer dúvida ou problema.
+    </p>
+  </div>
+
+  <div class="disclaimer">
+    Os resultados podem variar de turma para turma. Este material tem caráter educativo e foi desenvolvido para apoiar professoras na estimulação do desenvolvimento infantil de forma lúdica e divertida. Nosso compromisso é fornecer um recurso pedagógico de qualidade para facilitar o trabalho em sala de aula.
+  </div>
+
+  <script>
+    (function () {
+      const pageParams = new URLSearchParams(window.location.search);
+      const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
+      const utmEntries = utmKeys.filter(k => pageParams.has(k));
+      if (utmEntries.length === 0) return;
+      document.querySelectorAll('a[href*="pay.lowify.com.br"]').forEach(function (link) {
+        var url = new URL(link.href);
+        utmEntries.forEach(function (k) { url.searchParams.set(k, pageParams.get(k)); });
+        link.href = url.toString();
+      });
+    })();
+
+    document.querySelectorAll('.faq__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
