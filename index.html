@@ -519,6 +519,168 @@
       .hero h1 { font-size: 2.2rem; }
       .section-title { font-size: 1.8rem; }
     }
+
+    /* ── UPSELL MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 24px;
+      max-width: 420px;
+      width: 100%;
+      padding: 32px 24px 28px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      animation: modalPop 0.25s ease;
+      margin: auto;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: #bbb;
+      cursor: pointer;
+    }
+
+    .modal__close:hover { color: #666; }
+
+    .modal__tag {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .modal__title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .modal__title em { font-style: normal; color: #16a34a; }
+
+    .modal__text {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .modal__price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .modal__price-old {
+      font-size: 1rem;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+
+    .modal__price-now {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #16a34a;
+      line-height: 1;
+    }
+
+    .modal__price-now sup { font-size: 1.1rem; vertical-align: super; }
+
+    .modal__price-note {
+      font-size: 0.8rem;
+      color: #16a34a;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .modal__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 24px;
+      text-align: left;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .modal__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .modal__features li .check {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      background: #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      margin-top: 1px;
+    }
+
+    .modal .btn { margin-bottom: 12px; }
+
+    .modal .btn--premium {
+      background: #16a34a;
+      box-shadow: 0 6px 20px rgba(22,163,74,0.35);
+    }
+    .modal .btn--premium:hover { box-shadow: 0 10px 28px rgba(22,163,74,0.45); }
+
+    .modal .btn--basic {
+      background: none;
+      color: #999;
+      box-shadow: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 20px;
+      text-decoration: underline;
+    }
+    .modal .btn--basic:hover { transform: none; box-shadow: none; color: #666; }
   </style>
 </head>
 <body>
@@ -637,7 +799,7 @@
           <li><span class="check check--muted">✗</span> <span style="color:#bbb">Atividades datas comemorativas</span></li>
         </ul>
 
-        <a href="https://pay.lowify.com.br/checkout?product_id=V1jJO9" class="btn">🛒 Quero o Kit Básico</a>
+        <a href="https://pay.lowify.com.br/checkout?product_id=V1jJO9" class="btn" id="btnBasic">🛒 Quero o Kit Básico</a>
 
         <div class="whatsapp-note">
           💬 Você recebe o PDF no seu WhatsApp após a compra.
@@ -730,6 +892,35 @@
     Os resultados podem variar de turma para turma. Este material tem caráter educativo e foi desenvolvido para apoiar professoras na estimulação do desenvolvimento infantil de forma lúdica e divertida. Nosso compromisso é fornecer um recurso pedagógico de qualidade para facilitar o trabalho em sala de aula.
   </div>
 
+  <!-- ── MODAL UPSELL (aparece ao clicar no Kit Básico) ── -->
+  <div class="modal-overlay" id="upsellModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="upsellTitle">
+      <button class="modal__close" id="modalClose" aria-label="Fechar">&times;</button>
+
+      <span class="modal__tag">⭐ Oferta exclusiva pra você</span>
+      <h2 class="modal__title" id="upsellTitle">Que tal levar o <em>Kit Completo Premium</em>?</h2>
+      <p class="modal__text">Por só <strong>R$ 4,00 a mais</strong> você leva o kit básico + <strong>mais de 500 atividades</strong>. Muito mais em conta e você recebe tudo!</p>
+
+      <div class="modal__price-row">
+        <span class="modal__price-old">R$ 15,90</span>
+        <span class="modal__price-now"><sup>R$</sup>11,90</span>
+      </div>
+      <div class="modal__price-note">💚 Melhor custo-benefício — só nesta página</div>
+
+      <ul class="modal__features">
+        <li><span class="check">✓</span> Tudo do Kit Básico incluso</li>
+        <li><span class="check">✓</span> +250 dinâmicas infantis</li>
+        <li><span class="check">✓</span> +50 atividades para datas comemorativas</li>
+        <li><span class="check">✓</span> +500 atividades infantis no total</li>
+        <li><span class="check">✓</span> Acesso imediato + vitalício</li>
+      </ul>
+
+      <!-- TODO: trocar pelo link de checkout do Premium a R$ 11,90 quando disponível -->
+      <a href="https://pay.lowify.com.br/checkout?product_id=LhQBNG" class="btn btn--premium" id="btnUpsellPremium">⭐ Quero o Premium com desconto</a>
+      <a href="https://pay.lowify.com.br/checkout?product_id=V1jJO9" class="btn btn--basic" id="btnUpsellBasic">Não, quero o básico mesmo</a>
+    </div>
+  </div>
+
   <script>
     (function () {
       const pageParams = new URLSearchParams(window.location.search);
@@ -741,6 +932,40 @@
         utmEntries.forEach(function (k) { url.searchParams.set(k, pageParams.get(k)); });
         link.href = url.toString();
       });
+    })();
+
+    // ── Modal de upsell ──
+    (function () {
+      const modal = document.getElementById('upsellModal');
+      const btnBasic = document.getElementById('btnBasic');
+      const btnClose = document.getElementById('modalClose');
+      const btnKeepBasic = document.getElementById('btnUpsellBasic');
+      if (!modal || !btnBasic) return;
+
+      function openModal(e) {
+        e.preventDefault();
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // Abre o modal em vez de ir direto ao checkout básico
+      btnBasic.addEventListener('click', openModal);
+
+      // Fechar: X, clicar fora do card, ou tecla ESC
+      btnClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+
+      // "Quero o básico mesmo" segue para o checkout básico normalmente (link já aponta pra lá)
     })();
 
     document.querySelectorAll('.faq__btn').forEach(btn => {
